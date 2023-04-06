@@ -22,18 +22,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/', async (req, res) => {
-    const {message} = req.body;
-    const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `You give short answers
-        Person: ${message}
-        Bot: `,
-        max_tokens: maxTokens,
-        temperature: 0,
+    const { message } = req.body;
+    const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role:"user", content: message}]
     });
-    if(response.data.choices[0].text) {
+    if (response["data"]["choices"][0]["message"]["content"]) {
         res.send(JSON.stringify({
-            message: response.data.choices[0].text
+            message: response["data"]["choices"][0]["message"]["content"]
         }));
     }
 });
