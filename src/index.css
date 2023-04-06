@@ -4,5 +4,9 @@
 
 
 html {
-    @apply text-white bg-gray-800
-  }
+  @apply text-white bg-gray-800
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}

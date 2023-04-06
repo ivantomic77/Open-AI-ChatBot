@@ -27,9 +27,9 @@ app.post('/', async (req, res) => {
         model: "gpt-3.5-turbo",
         messages: [{role:"user", content: message}]
     });
-    if (response["data"]["choices"][0]["message"]["content"]) {
+    if (response.data.choices[0].message.content) {
         res.send(JSON.stringify({
-            message: response["data"]["choices"][0]["message"]["content"]
+            message: response.data.choices[0].message.content
         }));
     }
 });
